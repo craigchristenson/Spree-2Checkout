@@ -35,12 +35,12 @@ module Spree
 
     def two_checkout_validate
       pm=@order.payment_method
-      if pm.preferred_test_mode == true
+      if pm.preferred(:test_mode) == true
         order_number = 1
       else
         order_number = params['order_number']
       end
-      if Digest::MD5.hexdigest("#{pm.preferred_secret_word}#{pm.preferred_sid}#{order_number}#{'%.2f' % @order.total}").upcase != params['key']
+      if Digest::MD5.hexdigest("#{pm.preferred(:secret_word)}#{pm.preferred(:sid)}#{order_number}#{'%.2f' % @order.total}").upcase != params['key']
        abort("MD5 Hash did not match. If you are testing with demo sales please select test mode in your payment configuration.")
       end
     end

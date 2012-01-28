@@ -1,6 +1,6 @@
 <% pm=@order.payment_method %>
     <form method="POST" id='paymentForm' action="https://www.2checkout.com/checkout/spurchase">
-      <%= hidden_field_tag :sid, pm.preferred_sid %>
+      <%= hidden_field_tag :sid, pm.preferred(:sid) %>
       <%= hidden_field_tag :cart_order_id, @order.number %>
       <%= hidden_field_tag :total, '%.2f' % @order.total %>
       <%= hidden_field_tag :first_name, @order.bill_address.firstname %>
@@ -21,7 +21,7 @@
       <%= hidden_field_tag :ship_state, @order.ship_address.state %>
       <%= hidden_field_tag :ship_zip, @order.ship_address.zipcode %>
       <%= hidden_field_tag :ship_country, @order.ship_address.country.name %>
-      <% if pm.preferred_test_mode == true %>
+      <% if pm.preferred(:test_mode) == true %>
         <%= hidden_field_tag :demo, "Y" %>
       <% end %>
       <%= hidden_field_tag :id_type, 1 %>
