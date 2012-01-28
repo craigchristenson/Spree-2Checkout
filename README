@@ -5,11 +5,13 @@ Instructions
 1. Add gem 'spree_two_checkout', :git => "git://github.com/craigchristenson/Spree-2Checkout.git" to Gemfile
 2. Run bundle install
 3. Create new payment method in the admin under Configuration -> Payment Methods -> New Payment Method. 
-4. Create your payemnt method name, select BillingIntegration::2Checkout and click Create.
-5. Check Test Mode if you are placing 2Checkout demo sales or leave unchecked for live sales (It's really important that you have this set correctly or else the payment will never register and you will get an error on the passback.)
+4. Create your payment method name, select BillingIntegration::2Checkout and click Create.
+5. Check "Test Mode" if you are placing 2Checkout demo sales or leave unchecked for live sales 
+(It's really important that you have this set correctly or else the payment will never register and you will get an error on the passback.)
 
-In your 2Checkout account, under the Site Management page, select the "Header Redirect" return method and enter "http://www.example.com/two_checkout/success" as the approved URL. (replace example.com with your domain name)
+In your 2Checkout account, under the Site Management page, select the "Header Redirect" return method and enter "http://www.example.com/two_checkout/success" as the approved URL.
+(replace example.com with your domain name)
 
-Sorry no tests yet, I'll work on getting them added a few at a time as I am able to.
+Sorry no tests yet. I will work on getting them added a few at a time as I am able to.
 
-Let me know if you run into any issues at christensoncraig@gmail.com and I will be happy to help.
+Let me know if you run into any issues or bugs at christensoncraig@gmail.com and I will fix them.
