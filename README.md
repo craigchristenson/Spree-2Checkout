@@ -5,8 +5,7 @@
 
 ### Spree Settings
 
-1. Add gem to Gemfile
-    gem 'spree_two_checkout', :git => "git://github.com/craigchristenson/Spree-2Checkout.git"
+1. Add gem to Gemfile `gem 'spree_two_checkout', :git => "git://github.com/craigchristenson/Spree-2Checkout.git"`
 2. Run `bundle install`
 3. Sign in to your Spree admin.
 4. Under **Configuration** click **Payment Methods**.
