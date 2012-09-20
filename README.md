@@ -1,6 +1,6 @@
 ### _For a discount on 2Checkout’s monthly fees, enter promo code:  GIT2CO  during signup._
 
-### Integrate Spree < 1.0 with 2Checkout
+### Integrate Spree -v 1.2 with 2Checkout
 ----------------------------------------
 
 ### Spree Settings

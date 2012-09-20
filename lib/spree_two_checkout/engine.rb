@@ -14,16 +14,14 @@ module SpreeTwoCheckout
       Dir.glob(File.join(File.dirname(__FILE__), "../../app/**/*_decorator*.rb")) do |c|
         Rails.application.config.cache_classes ? require(c) : load(c)
       end
-
-      Dir.glob(File.join(File.dirname(__FILE__), "../../app/overrides/*.rb")) do |c|
-        Rails.application.config.cache_classes ? require(c) : load(c)
-      end
-    end
-    config.after_initialize do |app|
-      app.config.spree.payment_methods += [
-        Spree::BillingIntegration::TwoCheckout  ]
     end
     config.to_prepare &method(:activate).to_proc
 
+    initializer "spree_skrill.register.payment_methods", :after => 'spree.register.payment_methods' do |app|
+      app.config.spree.payment_methods += [
+        Spree::BillingIntegration::TwoCheckout
+      ]
+
+    end
   end
 end
