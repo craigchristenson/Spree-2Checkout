@@ -1,0 +1,52 @@
+<% pm=@order.payment_method %>
+    <form method="POST" id='paymentForm' action="https://www.2checkout.com/checkout/spurchase">
+      <%= hidden_field_tag :sid, pm.preferred(:sid) %>
+      <%= hidden_field_tag :cart_order_id, @order.number %>
+      <%= hidden_field_tag :total, '%.2f' % @order.total %>
+      <%= hidden_field_tag :first_name, @order.bill_address.firstname %>
+      <%= hidden_field_tag :middle_initial, "" %>
+      <%= hidden_field_tag :last_name, @order.bill_address.lastname %>
+      <%= hidden_field_tag :phone, @order.bill_address.phone%>
+      <%= hidden_field_tag :email, @order.email %>
+      <%= hidden_field_tag :street_address, @order.bill_address.address1 %>
+      <%= hidden_field_tag :street_address2, @order.bill_address.address2 %>
+      <%= hidden_field_tag :city, @order.bill_address.city %>
+      <% if (@order.bill_address.country.name != "United States" && @order.bill_address.country.name != "Canada") %>
+            <%= hidden_field_tag :state, "XX" %>
+      <% else %>
+      <%= hidden_field_tag :state, @order.bill_address.state %>
+      <% end %>
+      <%= hidden_field_tag :country, @order.bill_address.country.name %>
+      <%= hidden_field_tag :zip, @order.bill_address.zipcode %>
+      <% if (defined?(@order.ship_address.address1)) %>
+      <%= hidden_field_tag :ship_name, @order.ship_address.firstname + " " + @order.ship_address.lastname %>
+      <%= hidden_field_tag :ship_street_address, @order.ship_address.address1 %>
+      <%= hidden_field_tag :ship_street_address2, @order.ship_address.address2 %>
+      <%= hidden_field_tag :ship_city, @order.ship_address.city %>
+      <%= hidden_field_tag :ship_state, @order.ship_address.state %>
+      <%= hidden_field_tag :ship_zip, @order.ship_address.zipcode %>
+      <%= hidden_field_tag :ship_country, @order.ship_address.country.name %>
+      <% end %>
+      <% if pm.preferred(:test_mode) == true %>
+        <%= hidden_field_tag :demo, "Y" %>
+      <% end %>
+      <%= hidden_field_tag :id_type, 1 %>
+      <% i = 0 %>
+      <% @order.line_items.each do |line_item| -%>
+      <%= hidden_field_tag 'c_prod_' + i.to_s, line_item.variant.product.sku + "," + line_item.quantity.to_s %>
+      <%= hidden_field_tag 'c_name_' + i.to_s, line_item.variant.product.name %>
+      <%= hidden_field_tag 'c_description_' + i.to_s, line_item.variant.product.description %>
+      <%= hidden_field_tag 'c_price_' + i.to_s, line_item.price %>
+      <% i += 1 %>
+      <% end %>
+    <p>
+        You are being redirected to 2Checkout- please wait.
+    </p>
+
+        <p>If you do not get redirected, please press the button below to submit your payment.</p>
+        <input type="submit" name="send_form" value="Submit">
+    </form>
+
+ <script type="text/javascript">
+     $('#paymentForm').submit();
+ </script>

@@ -1,11 +1,11 @@
 ### _For a discount on 2Checkout’s monthly fees, enter promo code:  GIT2CO  during signup._
 
-### Integrate Spree < 1.0 with 2Checkout
+### Integrate Spree -v 1.0.x with 2Checkout
 ----------------------------------------
 
 ### Spree Settings
 
-1. Add gem to Gemfile `gem 'spree_two_checkout', :git => "git://github.com/craigchristenson/Spree-2Checkout.git"`
+1. Add gem to Gemfile `gem 'spree_two_checkout', :git => "git://github.com/craigchristenson/Spree-2Checkout.git", branch => "1.0"`
 2. Run `bundle install`
 3. Sign in to your Spree admin.
 4. Under **Configuration** click **Payment Methods**.

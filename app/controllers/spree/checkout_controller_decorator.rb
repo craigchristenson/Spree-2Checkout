@@ -1,5 +1,6 @@
 module Spree
   CheckoutController.class_eval do
+    skip_before_filter :verify_authenticity_token
     before_filter :two_checkout_hook, :only => [:update]
 
     def two_checkout_payment
@@ -8,10 +9,9 @@ module Spree
     end
 
     def two_checkout_success
-      @order = Order.find_by_number(params[:cart_order_id])
+      @order = Order.find_by_number!(params[:cart_order_id])
       two_checkout_validate
-      payment = Payment.new(:amount => @order.total, :payment_method_id => Spree::BillingIntegration::TwoCheckout.current.id)
-      payment.order = @order
+      payment = @order.payments.create(:amount => @order.total, :payment_method => @order.payment_method)
       payment.started_processing
       payment.complete!
       @order.state='complete'
@@ -27,8 +27,9 @@ module Spree
      return unless (params[:state] == "payment")
      return unless params[:order][:payments_attributes]
      payment_method = PaymentMethod.find(params[:order][:payments_attributes].first[:payment_method_id])
-     if payment_method.kind_of?(Spree::BillingIntegration::TwoCheckout)
+     if payment_method.kind_of?(BillingIntegration::TwoCheckout)
        load_order
+       @order.payments.create(:amount => @order.total, :payment_method => payment_method)
        redirect_to(two_checkout_payment_order_checkout_url(@order, :payment_method_id => payment_method))
      end
     end
