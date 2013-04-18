@@ -1,5 +1,5 @@
 <% pm=@order.payment_method %>
-    <form method="POST" id='paymentForm' action="https://www.2checkout.com/checkout/spurchase">
+    <form method="POST" id='paymentForm' action="https://www.2checkout.com/checkout/purchase">
       <%= hidden_field_tag :sid, pm.preferred(:sid) %>
       <%= hidden_field_tag :cart_order_id, @order.number %>
       <%= hidden_field_tag :total, '%.2f' % @order.total %>
@@ -34,13 +34,10 @@
       <%= hidden_field_tag 'c_price_' + i.to_s, line_item.price %>
       <% i += 1 %>
       <% end %>
-    <p>
-        You are being redirected to 2Checkout- please wait.
-    </p>
 
-        <p>If you do not get redirected, please press the button below to submit your payment.</p>
-        <input type="submit" name="send_form" value="Submit">
+        <p>Please press the button below to submit your payment.</p>
+        <input type="submit" name="send_form" value="Submit your Payment">
     </form>
-    <% if pm.preferred(:direct_checkout) == true %> 
-      <script src='https://beta.2checkout.com/static/checkout/javascript/direct.min.js'></script>
+    <% if pm.preferred(:direct_checkout) == true %>
+      <script src='https://www.2checkout.com/static/checkout/javascript/direct.min.js'></script>
     <% end %>
