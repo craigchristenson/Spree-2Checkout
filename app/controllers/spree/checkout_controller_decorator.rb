@@ -47,7 +47,7 @@ module Spree
     end
 
     def payment_method
-      @payment_method ||= PaymentMethod.find(@order.payment_method)
+      @payment_method ||= PaymentMethod.find(@order.payments.last.payment_method)
     end
   end
 end
