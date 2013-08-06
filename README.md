@@ -1,4 +1,4 @@
-### _[Signup with 2Checkout and start selling!](https://www.2checkout.com/referral?r=git2co)_
+### _[Signup free with 2Checkout and start selling!](https://www.2checkout.com/referral?r=git2co)_
 
 ### Integrate Spree -v 1.2 with 2Checkout
 ----------------------------------------
