@@ -6,7 +6,7 @@ module Spree
     helper_method :payment_method
 
     def two_checkout_payment
-      load_order
+      load_order_with_lock
     end
 
     def two_checkout_success
@@ -29,7 +29,7 @@ module Spree
      return unless params[:order][:payments_attributes]
      payment_method_id = PaymentMethod.find(params[:order][:payments_attributes].first[:payment_method_id])
      if payment_method_id.kind_of?(BillingIntegration::TwoCheckout)
-       load_order
+       load_order_with_lock
        @order.payments.create(:amount => @order.total, :payment_method_id => payment_method_id.id)
        redirect_to(two_checkout_payment_order_checkout_url(@order, :payment_method => payment_method_id))
      end

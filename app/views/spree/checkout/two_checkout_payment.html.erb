@@ -38,6 +38,6 @@
         <p>Please press the button below to submit your payment.</p>
         <input type="submit" name="send_form" value="Submit your Payment">
     </form>
-    <% if pm.preferred(:direct_checkout) == true %>
+    <% if pm.preferred(:inline_checkout) == true %>
       <script src='https://www.2checkout.com/static/checkout/javascript/direct.min.js'></script>
     <% end %>

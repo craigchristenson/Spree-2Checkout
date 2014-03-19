@@ -11,7 +11,5 @@ Spree::Core::Engine.routes.draw do
   end
 
   # Add your extension routes here
-  match '/two_checkout/success/' => 'checkout#two_checkout_success', :as => :two_checkout_success
-   # get '/two_checkout/success/' => 'checkout#two_checkout_success', :as => :two_checkout_success
-   #  post '/two_checkout/success/' => 'checkout#two_checkout_success', :as => :two_checkout_success
+  get '/two_checkout/success/' => 'checkout#two_checkout_success', :as => :two_checkout_success
 end

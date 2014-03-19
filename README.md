@@ -1,6 +1,6 @@
 ### _[Signup free with 2Checkout and start selling!](https://www.2checkout.com/referral?r=git2co)_
 
-### Integrate Spree -v 1.2 with 2Checkout
+### Integrate Spree with 2Checkout
 ----------------------------------------
 
 ### Spree Settings
@@ -15,7 +15,7 @@
 8. For **Provider** select **Spree::BillingIntegration::TwoCheckout**.
 9. Click **Create**.
 10. Server can be **test** or **production**.
-11.  Check **Test Mode** if you are placing 2Checkout demo sales or leave unchecked for live sales. _(It's really important that you have this set correctly or else the payment will never register and you will get an error on the passback.)_
+11. Check **Test Mode** if you are placing 2Checkout demo sales or leave unchecked for live sales. _(It's really important that you have this set correctly or else the payment will never register and you will get an error on the passback.)_
 12. Enter your **Sid**. _(2Checkout Account Number)_
 13. Enter your **Secret Word**. _(Must be the same value entered on your 2Checkout Site Management page.)_
 14. Click **Update**.
